@@ -49,6 +49,11 @@ public class HNumberOfIslands {
         dfs(grid, i-1, j); //Top
         dfs(grid, i, j+1); //Right
         dfs(grid, i, j-1); //Left
+        //If diagonals needs to be considered.
+        dfs(grid, i + 1, j + 1); //bottom-right side traversal
+        dfs(grid, i - 1, j - 1); //top-left side traversal
+        dfs(grid, i + 1, j - 1); //bottom-left side traversal
+        dfs(grid, i - 1, j + 1); //top-right side traversal
         return 1;
     }
 }
