@@ -20,22 +20,19 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         
-        if(s.length() == 0) {
-            return 0;
-        } else if(s.length() == 1) {
-            return 1;
-        }
+        if(s.length() == 0 || s.length() == 1) return s.length();
         
-        String subStr = "";
+        Set<Character> seen = new HashSet<>();
         int maxLength = -1;
+        int right=0,left=0;
         
-        for(int i=0;i<s.length();i++) {
-            if(subStr.contains(String.valueOf(s.charAt(i)))) {
-                subStr = subStr.substring(subStr.indexOf(String.valueOf(s.charAt(i))) + 1);
+        while(right<s.length()) {
+            while(seen.contains(s.charAt(right))) {
+              seen.remove(s.charAt(left++));
             }
-            subStr+=s.charAt(i);
-            
-            maxLength = Math.max(subStr.length(), maxLength);
+            seen.add(s.charAt(right));
+            maxLength = Math.max(seen.size(), maxLength);
+            right++;
         }
         
         return maxLength;
